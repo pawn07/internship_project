@@ -43,7 +43,22 @@ LIMIT $start, $limit");
 </form>
 <br>
 
+<?php
+$user = mysqli_fetch_assoc(
+    mysqli_query(
+        $conn,
+        "SELECT role FROM users WHERE username='".$_SESSION['username']."'"
+    )
+);
+
+if($user['role'] == 'admin')
+{
+?>
 <a href="add.php">Add New Post</a> |
+<?php
+}
+?>
+
 <a href="logout.php">Logout</a>
 
 <hr>
