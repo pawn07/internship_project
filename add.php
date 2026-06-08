@@ -22,6 +22,7 @@ if(isset($_POST['submit']))
 <html>
 <head>
 <title>Add Post</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>

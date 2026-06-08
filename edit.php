@@ -23,6 +23,7 @@ exit();
 <html>
 <head>
 <title>Edit Post</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
