@@ -1,3 +1,4 @@
+
 <?php
 include "db.php";
 
@@ -11,11 +12,17 @@ if(isset($_POST['register']))
 
     if(mysqli_query($conn,$sql))
     {
-        echo "Registration Successful! <a href='login.php'>Login</a>";
+        echo "<p style='color:green;text-align:center;'>
+        Registration Successful!
+        <br><br>
+        <a href='login.php'>Click here to Login</a>
+        </p>";
     }
     else
     {
-        echo "Error!";
+        echo "<p style='color:red;text-align:center;'>
+        Registration Failed!
+        </p>";
     }
 }
 ?>
@@ -23,23 +30,48 @@ if(isset($_POST['register']))
 <!DOCTYPE html>
 <html>
 <head>
-<title>Register</title>
-<link rel="stylesheet" href="style.css">
+    <title>User Registration</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h2>User Registration</h2>
+<div class="container">
+
+<center>
+
+<h2>📝 User Registration</h2>
 
 <form method="POST">
 
-Username:<br>
-<input type="text" name="username" required><br><br>
+<label><b>Username</b></label>
 
-Password:<br>
-<input type="password" name="password" required><br><br>
+<br><br>
 
-<input type="submit" name="register" value="Register">
+<input
+type="text"
+name="username"
+placeholder="Enter Username"
+required>
+
+<br><br>
+
+<label><b>Password</b></label>
+
+<br><br>
+
+<input
+type="password"
+name="password"
+placeholder="Enter Password"
+required>
+
+<br><br>
+
+<input
+type="submit"
+name="register"
+value="Register">
 
 </form>
 
@@ -47,5 +79,10 @@ Password:<br>
 
 <a href="login.php">Already have an account? Login</a>
 
+</center>
+
+</div>
+
 </body>
 </html>
+

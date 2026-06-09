@@ -1,14 +1,15 @@
+
 <?php
 session_start();
 include "db.php";
 
 if(isset($_POST['submit']))
 {
-    $title=$_POST['title'];
-    $content=$_POST['content'];
+    $title = $_POST['title'];
+    $content = $_POST['content'];
 
-    $sql="INSERT INTO posts(title,content)
-          VALUES('$title','$content')";
+    $sql = "INSERT INTO posts(title,content)
+            VALUES('$title','$content')";
 
     if(mysqli_query($conn,$sql))
     {
@@ -21,29 +22,59 @@ if(isset($_POST['submit']))
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Post</title>
-<link rel="stylesheet" href="style.css">
+    <title>Add New Post</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h2>Add New Post</h2>
+<div class="container">
+
+<center>
+
+<h2>➕ Add New Post</h2>
 
 <form method="POST">
 
-Title:<br>
-<input type="text" name="title" required><br><br>
+<label><b>Title</b></label>
 
-Content:<br>
-<textarea name="content" rows="5" cols="40" required></textarea><br><br>
+<br><br>
 
-<input type="submit" name="submit" value="Save">
+<input
+type="text"
+name="title"
+placeholder="Enter Post Title"
+required>
+
+<br><br>
+
+<label><b>Content</b></label>
+
+<br><br>
+
+<textarea
+name="content"
+rows="6"
+placeholder="Enter Post Content"
+required></textarea>
+
+<br><br>
+
+<input
+type="submit"
+name="submit"
+value="Save Post">
 
 </form>
 
 <br>
 
-<a href="index.php">Back</a>
+<a href="index.php">⬅ Back to Home</a>
+
+</center>
+
+</div>
 
 </body>
 </html>
+

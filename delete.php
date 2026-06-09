@@ -1,10 +1,18 @@
+
 <?php
 include "db.php";
 
-$id=$_GET['id'];
+// Check if ID is provided
+if(isset($_GET['id']))
+{
+    $id = $_GET['id'];
 
-mysqli_query($conn,"DELETE FROM posts WHERE id=$id");
+    // Delete the selected post
+    mysqli_query($conn, "DELETE FROM posts WHERE id='$id'");
+}
 
-header("Location:index.php");
+// Redirect back to the homepage
+header("Location: index.php");
 exit();
 ?>
+

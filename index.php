@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -7,11 +8,12 @@ if(!isset($_SESSION['username'])){
 }
 
 include "db.php";
+
 $limit = 5;
 
 $page = isset($_GET['page']) ? $_GET['page'] : 1;
-
 $start = ($page - 1) * $limit;
+
 $search = "";
 
 if(isset($_GET['search']))
@@ -19,28 +21,41 @@ if(isset($_GET['search']))
     $search = $_GET['search'];
 }
 
-$result = mysqli_query($conn,
-"SELECT * FROM posts
-WHERE title LIKE '%$search%'
-OR content LIKE '%$search%'
-ORDER BY id DESC
-LIMIT $start, $limit");
+$result = mysqli_query(
+    $conn,
+    "SELECT * FROM posts
+    WHERE title LIKE '%$search%'
+    OR content LIKE '%$search%'
+    ORDER BY id DESC
+    LIMIT $start, $limit"
+);
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Blog CRUD</title>
-<link rel="stylesheet" href="style.css">
+    <title>Blog CRUD</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+<div class="container">
+
 <h2>Welcome <?php echo $_SESSION['username']; ?></h2>
+
 <form method="GET">
-    <input type="text" name="search" placeholder="Search posts...">
+    <input
+        type="text"
+        name="search"
+        placeholder="Search posts..."
+        value="<?php echo $search; ?>"
+    >
+
     <input type="submit" value="Search">
 </form>
+
 <br>
 
 <?php
@@ -54,7 +69,8 @@ $user = mysqli_fetch_assoc(
 if($user['role'] == 'admin')
 {
 ?>
-<a href="add.php">Add New Post</a> |
+<a href="add.php">Add New Post</a>
+|
 <?php
 }
 ?>
@@ -63,17 +79,17 @@ if($user['role'] == 'admin')
 
 <hr>
 
-<table border="1" cellpadding="10">
+<table>
 
 <tr>
-<th>ID</th>
-<th>Title</th>
-<th>Content</th>
-<th>Created At</th>
-<th>Action</th>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Created At</th>
+    <th>Action</th>
 </tr>
 
-<?php while($row=mysqli_fetch_assoc($result)){ ?>
+<?php while($row = mysqli_fetch_assoc($result)){ ?>
 
 <tr>
 
@@ -86,13 +102,9 @@ if($user['role'] == 'admin')
 <td><?php echo $row['created_at']; ?></td>
 
 <td>
-
-<a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a>
-
-|
-
-<a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a>
-
+    <a href="edit.php?id=<?php echo $row['id']; ?>">Edit</a>
+    |
+    <a href="delete.php?id=<?php echo $row['id']; ?>">Delete</a>
 </td>
 
 </tr>
@@ -100,6 +112,9 @@ if($user['role'] == 'admin')
 <?php } ?>
 
 </table>
+
+<br>
+
 <?php
 
 $total_result = mysqli_query($conn, "SELECT * FROM posts");
@@ -113,6 +128,8 @@ for($i = 1; $i <= $total_pages; $i++)
 }
 
 ?>
+
+</div>
 
 </body>
 </html>

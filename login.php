@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 include "db.php";
@@ -22,12 +23,12 @@ if(isset($_POST['login']))
         }
         else
         {
-            echo "Wrong Password!";
+            echo "<p style='color:red;text-align:center;'>Wrong Password!</p>";
         }
     }
     else
     {
-        echo "User not found!";
+        echo "<p style='color:red;text-align:center;'>User not found!</p>";
     }
 }
 ?>
@@ -35,28 +36,56 @@ if(isset($_POST['login']))
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>User Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h2>User Login</h2>
+<div class="container">
+
+<center>
+
+<h2>🔐 User Login</h2>
 
 <form method="POST">
 
-Username:<br>
-<input type="text" name="username" required><br><br>
+<label><b>Username</b></label>
+<br><br>
 
-Password:<br>
-<input type="password" name="password" required><br><br>
+<input
+type="text"
+name="username"
+placeholder="Enter Username"
+required>
 
-<input type="submit" name="login" value="Login">
+<br><br>
+
+<label><b>Password</b></label>
+<br><br>
+
+<input
+type="password"
+name="password"
+placeholder="Enter Password"
+required>
+
+<br><br>
+
+<input
+type="submit"
+name="login"
+value="Login">
 
 </form>
 
 <br>
 
-<a href="register.php">Create Account</a>
+<a href="register.php">Create New Account</a>
+
+</center>
+
+</div>
 
 </body>
 </html>
